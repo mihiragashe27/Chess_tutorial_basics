@@ -1,10 +1,10 @@
-import sys
+import sys                                                         #gives access to fuction that intercats directly with interpreters!
 
 
 class ChessGuide:
 
   def __init__(self):
-    # Dictionary storing piece values, names, and movement rules
+                                                                                        # Dictionary storing piece values, names, and movement 
     self.pieces_info = {
         "P": {
             "name": "Pawn",
@@ -52,7 +52,7 @@ class ChessGuide:
         },
     }
 
-    # Notation mapping dictionary
+                                                                            # Notation mapping dictionary
     self.notation_map = {
         "N": "Knight",
         "B": "Bishop",
@@ -76,7 +76,7 @@ class ChessGuide:
     """Translates standard algebraic notation (e.g., 'Nf6') into beginner plain text."""
     notation = notation.strip()
 
-    # Handling Castling
+                                                                                                      #Castling
     if notation == "O-O" or notation == "0-0":
       print("\nTranslation: King castles Kingside (short castle).")
       return
@@ -84,15 +84,16 @@ class ChessGuide:
       print("\nTranslation: King castles Queenside (long castle).")
       return
 
-    # Check for capture, check, or checkmate symbols
+                                                                                                  # All signs and symbaols
     is_capture = "x" in notation
     is_check = "+" in notation
     is_checkmate = "#" in notation
 
-    # Clean string to get clean destination square
+                                                                                         # Clean string-- remove extra spaces
     clean_notation = notation.replace("x", "").replace("+", "").replace("#", "")
-
-    # Identify piece type
+ 
+                                                                                                    # which pice?
+     
     first_char = clean_notation[0]
     if first_char in self.notation_map:
       piece_name = self.notation_map[first_char]
@@ -101,7 +102,7 @@ class ChessGuide:
       piece_name = "Pawn"
       target_square = clean_notation
 
-    # Build plain English output
+
     action = "captures on" if is_capture else "moves to"
     result = f"\nTranslation: {piece_name} {action} square {target_square.lower()}."
 
@@ -115,7 +116,7 @@ class ChessGuide:
   def start_app(self):
     """Runs the main menu loop."""
     while True:
-      print("\n==========================================")
+      print("\n----------------------------------------")
       print("   CHESS BEGINNER GUIDE & TRANSLATOR      ")
       print("==========================================")
       print("1. Look up Piece Values & Movement Rules")
@@ -141,7 +142,7 @@ class ChessGuide:
         print("\nInvalid choice! Please pick 1, 2, or 3.")
 
 
-# --- RUN PROGRAM ---
+                                                                                   # RUN PROGRAM 
 if __name__ == "__main__":
   app = ChessGuide()
   app.start_app()
